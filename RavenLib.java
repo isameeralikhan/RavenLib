@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class RavenLib {
-    /* Staring steps creating my own library :) */
+    /* Staring steps for creating my own library :) */
     static void reverseArray(int[] array) {                 //reverse same array
         int start = 0;
         int end = array.length-1;
