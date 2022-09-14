@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class RavenLib {
     /* Staring steps creating my own library :) */
     static void reverseArray(int[] array) {                 //reverse same array
@@ -50,11 +52,35 @@ public class RavenLib {
         }
         return min;
     }
-
-
+    static int kthSmallestElement(int[] array, int k){              // using max-heap
+        PriorityQueue<Integer> p = new PriorityQueue<>(Collections.reverseOrder());
+        for(int i=0; i<k;i++){
+            p.add(array[i]);
+        }
+        for(int i=k; i<array.length;i++){
+            if(array[i]<p.peek()){
+                p.poll();
+                p.add(array[i]);
+            }
+        }
+        return p.peek();
+    }
+    static int kthLargeestElement(int[] array, int k){              // using min-heap
+        PriorityQueue<Integer> p = new PriorityQueue<>();
+        for(int i=0; i<k;i++){
+            p.add(array[i]);
+        }
+        for(int i=k; i<array.length;i++){
+            if(array[i]>p.peek()){
+                p.poll();
+                p.add(array[i]);
+            }
+        }
+        return p.peek();
+    }
     public static void main(String[] args){
         System.out.println("");
-        int[] arr = {1,555,2,-55,6,555,5,6,5,88,9775,2};
-        System.out.println(minInArray(arr));
+        int[] arr = {1,555,2,-55,6,834,5,6,5,88,9775,2};
+        System.out.println(kthLargeestElement(arr,2));
     }
 }
